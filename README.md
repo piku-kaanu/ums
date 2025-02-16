@@ -36,17 +36,31 @@ For installation, follow below mentioned steps,
 
 ## Usage
 
-1. User creation API: POST: /users/create
+1. User registration API: POST: /users/v1/register
    - this API will create user with unique username.
-2. User updation API: PUT: /users/<user_id>
-   - This API will update existing user.
-3. User deletion API: DELETE: /users/<user_id>
-   - This API will delete existing user.
-4. User fetch API: GET: /users/<user_id>
-   - This API will fetch existing user.
-5. Assign a role to a user: /assign_role
-   - This API will assign a specific role to a specific user.
+2. User login API: POST: /users/v1/login
+   - This API will login user and create access token.
+   - This access token can be used in the upcoming api calls.
+   - This token will be active for 30 minutes.
+3. Role Assignment API: POST: /assign_role
+   - This API will check if the session user's role as admin.
+   - If it is admin then it will assign the input role to the input user.
+4. Business asset access: GET: /assets/v1/business
+   - This API is the example to check role based access.
+   - This API will return the business asset data only to the logged in admin user.
+   - This will be checked from the bearer token from the request header. 
+5. Marketing asset access: GET: /assets/v1/marketing
+   - This API is the example to check role based access.
+   - This API will return the marketing asset data to Staff and Admin users.
+   - This will be checked from the bearer token from the request header.
 
 ## Contributing
 - v1.0: Parth Kansara: Added CRUD APIs for user and an API to assign the role to a user.
+- v1.1: Parth Kansara: Added ums_v2 app for user registration, user login and role based permission management.
+
+## Future Enhancement
+- Permissions will be further broken to Read, Write, Update and Delete.
+- Various Roles can be defined to updated permissions on different assets.
+- List of users will be shown with asset wise permissions.
+- Admin user then can update any user details and permissions.
 
